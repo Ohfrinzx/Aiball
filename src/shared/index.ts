@@ -8,3 +8,4 @@ export * from './rng';
 export * from './vec2';
 export * from './quat';
 export * from './tableGeometry';
+export * from './rulesTypes';
