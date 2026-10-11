@@ -53,6 +53,7 @@ playtested the live site and said "approved".
 
 Newest first. Format: `YYYY-MM-DD — who — what — why`.
 
+- 2026-10-11 — Claude (Phase 1 agent) — Physics engine (`src/physics`: fixed 1/240 s step, continuous collision detection, slide→roll friction, top/back/side spin, rail english, pocket jaws with rattle, soft-contact clusters for the break, `simulate()`/`simulateShot()`/`predictAim()`), rack (`src/rules/rack.ts`), 7-ft table geometry with jaws (`src/shared`), unit tests — Phase 1 core mechanics. Shared changes: new types in `shared/types.ts` (BallState, TableState, ShotResult, ShotPlayback, AimPrediction, SceneView, InputHandlers, …), `TableGeometry` gained cushions/jawTips/cushionOutlines/headSpot, `Pocket` gained `mouth`, `ViewTransform` gained `tableRect`; `shared/tableGeometry.ts`, `shared/quat.ts` added. Affects render (table drawing) and every future module.
 - 2026-10-11 — Claude (Phase 1 agent) — Claimed Phase 1 (physics, table + balls, cue controls, single-shot game loop) on branch `claude/upbeat-newton-elmc39` — user directed Phase 1 to start; the session's harness mandates this branch name instead of `phase1/...`.
 - 2026-10-11 — Claude (Phase 0 agent) — Moved Phase 0 to Done on the task board — `ci` green on Ohfrinzx/Aiball#1; merging to main. Phase 0 checkbox stays open until the user playtests the live site and says "approved".
 - 2026-10-11 — Claude (Phase 0 agent) — Linked Phase 0 PR (Ohfrinzx/Aiball#1) on the task board — track review state.
