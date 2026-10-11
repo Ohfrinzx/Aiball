@@ -6,3 +6,5 @@ export * from './types';
 export * from './constants';
 export * from './rng';
 export * from './vec2';
+export * from './quat';
+export * from './tableGeometry';

@@ -1,6 +1,13 @@
 /**
- * src/input — touch/mouse handling turned into aim / power / spin intents.
+ * src/input — touch/mouse handling turned into aim / power / spin / ball-in-hand intents.
  * May import: src/shared only.
- * Phase 0 placeholder; see PROGRESS.md for the task that fills this in.
  */
-export {};
+export { attachTableInput } from './tableInput';
+export { attachPowerSlider, attachFineAim, attachSpinPad } from './controlsInput';
+export {
+  aimDeltaFromDrag,
+  powerFromPull,
+  spinFromPad,
+  wrapAngle,
+  FINE_AIM_RAD_PER_PX,
+} from './gestures';

@@ -1,5 +1,5 @@
-import { TABLE_OUTER } from '../shared/constants';
-import type { Orientation, Vec2, Viewport, ViewTransform } from '../shared/types';
+import { TABLE_OUTER } from '../shared';
+import type { Orientation, ScreenRect, Vec2, Viewport, ViewTransform } from '../shared';
 
 /** Space reserved around the table for HUD elements, as fractions of the viewport. */
 export interface HudInsets {
@@ -10,13 +10,13 @@ export interface HudInsets {
 }
 
 /**
- * Portrait (phones): table stands vertically; player bar on top, power slider
- * strip on the left, a little room at the bottom.
- * Landscape (desktop): table lies horizontally; player bar on top, power slider on the left.
+ * Portrait (phones): table stands vertically; player bar on top, power slider strip on
+ * the left, fine-aim wheel strip on the right.
+ * Landscape (desktop): table lies horizontally; same arrangement around it.
  */
 export const HUD_INSETS: Record<Orientation, HudInsets> = {
-  portrait: { top: 0.13, right: 0.03, bottom: 0.05, left: 0.13 },
-  landscape: { top: 0.12, right: 0.04, bottom: 0.04, left: 0.08 },
+  portrait: { top: 0.12, right: 0.1, bottom: 0.03, left: 0.1 },
+  landscape: { top: 0.11, right: 0.08, bottom: 0.04, left: 0.08 },
 };
 
 export interface Layout extends ViewTransform {
@@ -24,12 +24,7 @@ export interface Layout extends ViewTransform {
   /** Screen position (CSS px) of the table center. */
   readonly center: Vec2;
   /** On-screen bounding box of the whole table (including rails), CSS px. */
-  readonly tableRect: {
-    readonly x: number;
-    readonly y: number;
-    readonly width: number;
-    readonly height: number;
-  };
+  readonly tableRect: ScreenRect;
   /** Rotation applied when drawing table space onto the screen, radians. */
   readonly rotation: number;
 }

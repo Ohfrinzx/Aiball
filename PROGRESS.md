@@ -7,7 +7,8 @@
 
 - [ ] **Phase 0: Foundation** — scaffold, tooling, CI/CD, placeholder table, process docs
 - [ ] **Phase 1: Physics, table, cue controls** — deterministic physics, full table + balls,
-      GamePigeon-style aiming (guide line), power slider, cue-ball spin
+      GamePigeon-style aiming (guide line), power slider, cue-ball spin — _built, in review;
+      awaiting user playtest_
 - [ ] **Phase 2 (parallel): Rules engine | AI opponent | UI/menus and responsive polish**
 - [ ] **Phase 3 (parallel): Audio, animations, PWA install, stats, settings**
 - [ ] **Phase 4: Full review, bug fixing, performance on mobile**
@@ -19,22 +20,18 @@ playtested the live site and said "approved".
 
 ### Todo
 
-| Phase | Task                                        | Module(s)    | Notes                         |
-| ----- | ------------------------------------------- | ------------ | ----------------------------- |
-| 1     | Ball/cushion/pocket physics + `simulate()`  | physics      | Fixed timestep, deterministic |
-| 1     | Draw balls, cue stick, aim guide line       | render       |                               |
-| 1     | Aim drag, power slider, spin selector       | input, ui    | GamePigeon-style controls     |
-| 1     | Game loop wiring for a single shot          | state        |                               |
-| 2     | 8-ball rules engine                         | rules        |                               |
-| 2     | AI opponent                                 | ai           | Uses physics `simulate()`     |
-| 2     | Menus, HUD, responsive polish               | ui, render   |                               |
-| 3     | Audio                                       | audio        | Original sounds only          |
-| 3     | Animations                                  | render       |                               |
-| 3     | PWA manifest + service worker (offline)     | state/config |                               |
-| 3     | Stats and settings                          | ui, state    |                               |
-| 4     | Full review, bug fixing, mobile performance | all          |                               |
+| Phase | Task                                        | Module(s)    | Notes                     |
+| ----- | ------------------------------------------- | ------------ | ------------------------- |
+| 2     | 8-ball rules engine                         | rules        |                           |
+| 2     | AI opponent                                 | ai           | Uses physics `simulate()` |
+| 2     | Menus, HUD, responsive polish               | ui, render   |                           |
+| 3     | Audio                                       | audio        | Original sounds only      |
+| 3     | Animations                                  | render       |                           |
+| 3     | PWA manifest + service worker (offline)     | state/config |                           |
+| 3     | Stats and settings                          | ui, state    |                           |
+| 4     | Full review, bug fixing, mobile performance | all          |                           |
 
-(Phase 1+ tasks will be refined into concrete branch-sized tasks when Phase 1 starts.)
+(Phase 2+ tasks will be refined into concrete branch-sized tasks when their phase starts.)
 
 ### In Progress
 
@@ -48,14 +45,20 @@ playtested the live site and said "approved".
 
 ### Done
 
-| Task                                                                                                                   | Agent                  | Branch                                         | Merged     |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------------------------------- | ---------- |
-| Phase 0: Foundation ([Ohfrinzx/Aiball#1](https://github.com/Ohfrinzx/Aiball/pull/1)) — awaiting user playtest approval | Claude (Phase 0 agent) | `claude/mobile-8ball-pool-architecture-psyp8z` | 2026-10-11 |
+| Task                                                                                                                                     | Agent                  | Branch                                         | Merged     |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------------------------------- | ---------- |
+| Phase 1: physics, table, cue controls ([Ohfrinzx/Aiball#2](https://github.com/Ohfrinzx/Aiball/pull/2)) — awaiting user playtest approval | Claude (Phase 1 agent) | `claude/upbeat-newton-elmc39`                  | 2026-10-11 |
+| Phase 0: Foundation ([Ohfrinzx/Aiball#1](https://github.com/Ohfrinzx/Aiball/pull/1)) — awaiting user playtest approval                   | Claude (Phase 0 agent) | `claude/mobile-8ball-pool-architecture-psyp8z` | 2026-10-11 |
 
 ## Change log
 
 Newest first. Format: `YYYY-MM-DD — who — what — why`.
 
+- 2026-10-11 — Claude (Phase 1 agent) — Moved Phase 1 to Done on the task board — `ci` green on Ohfrinzx/Aiball#2; merging to main. Phase 1 checkbox stays open until the user playtests the live site and says "approved".
+- 2026-10-11 — Claude (Phase 1 agent) — Opened Ohfrinzx/Aiball#2 and moved Phase 1 to In Review — track review/CI state.
+- 2026-10-11 — Claude (Phase 1 agent) — Rendering (`src/render`: table with jaw-cut cushions, per-pixel 3D ball sprites that roll, cue stick, aim guide with ghost ball + object/cue lines, ball-in-hand ring, kitchen shading), input (`src/input`: drag-to-rotate aim, tap-to-aim, fine-aim wheel, mouse-wheel fine aim, pull-back power slider, spin pad, cue ball dragging), HUD (`src/ui`: top bar, power slider, fine-aim wheel, spin picker, toasts), game loop (`src/state`: practice mode, recorded-playback animation, strike animation, scratch → ball in hand, re-rack, `?seed=`), `index.html` gains `#scene` canvas and `#hud`, `src/styles.css` safe-area frame; unit tests for input/state; Playwright gameplay tests; README controls — completes Phase 1 controls and flow.
+- 2026-10-11 — Claude (Phase 1 agent) — Physics engine (`src/physics`: fixed 1/240 s step, continuous collision detection, slide→roll friction, top/back/side spin, rail english, pocket jaws with rattle, soft-contact clusters for the break, `simulate()`/`simulateShot()`/`predictAim()`), rack (`src/rules/rack.ts`), 7-ft table geometry with jaws (`src/shared`), unit tests — Phase 1 core mechanics. Shared changes: new types in `shared/types.ts` (BallState, TableState, ShotResult, ShotPlayback, AimPrediction, SceneView, InputHandlers, …), `TableGeometry` gained cushions/jawTips/cushionOutlines/headSpot, `Pocket` gained `mouth`, `ViewTransform` gained `tableRect`; `shared/tableGeometry.ts`, `shared/quat.ts` added. Affects render (table drawing) and every future module.
+- 2026-10-11 — Claude (Phase 1 agent) — Claimed Phase 1 (physics, table + balls, cue controls, single-shot game loop) on branch `claude/upbeat-newton-elmc39` — user directed Phase 1 to start; the session's harness mandates this branch name instead of `phase1/...`.
 - 2026-10-11 — Claude (Phase 0 agent) — Moved Phase 0 to Done on the task board — `ci` green on Ohfrinzx/Aiball#1; merging to main. Phase 0 checkbox stays open until the user playtests the live site and says "approved".
 - 2026-10-11 — Claude (Phase 0 agent) — Linked Phase 0 PR (Ohfrinzx/Aiball#1) on the task board — track review state.
 - 2026-10-11 — Claude (Phase 0 agent) — Scaffolded Vite + TS project, ESLint (with module
@@ -70,7 +73,13 @@ Newest first. Format: `YYYY-MM-DD — who — what — why`.
 
 ### Known bugs
 
-_None yet._
+- Phase 1 limitations (by design, not bugs): practice mode only — no turns, groups, fouls or
+  AI until Phase 2; no sound until Phase 3.
+- A shot is simulated synchronously on release (~15 ms for a full break on desktop, warm). On
+  slow phones the break may show one short hitch; move simulation to a Web Worker in Phase 4
+  if playtesting shows it.
+- Squirt, swerve (massé) and collision-induced throw are not modelled, matching the
+  predictable feel of mobile pool; revisit only if playtesting asks for it.
 
 ### Playtest feedback
 
@@ -79,16 +88,26 @@ _None yet._
 
 ## Decisions log
 
-| Date       | Decision                                                                                                                                               | Reason                                                                            |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| 2026-10-11 | Game name **Velvet 8** (`GAME_NAME` in `src/shared/constants.ts`)                                                                                      | Original name; must not use GamePigeon branding                                   |
-| 2026-10-11 | Vite + TypeScript strict, Canvas 2D, no UI framework                                                                                                   | Few screens; plain DOM overlays keep bundle small and fast on phones              |
-| 2026-10-11 | Custom deterministic physics, fixed timestep, seeded RNG; ESLint bans `Math.random`/`Date.now`/`performance.now` in physics/rules/ai                   | AI must simulate shots exactly as the game plays them                             |
-| 2026-10-11 | Added `src/shared/` for all cross-module types and constants                                                                                           | Single shared place for interfaces avoids edit conflicts between agents           |
-| 2026-10-11 | Table space in meters, landscape-oriented; portrait = 90° render transform (foot of table at top of screen)                                            | Physics/rules/AI stay orientation-agnostic; matches phone-portrait vertical table |
-| 2026-10-11 | Table: 2.24 m × 1.12 m (2:1) playing surface, regulation 57.15 mm balls                                                                                | Standard 8-ft proportions; tune pocket sizes in Phase 1 to match reference feel   |
-| 2026-10-11 | Import boundaries enforced via ESLint `no-restricted-imports`                                                                                          | Keeps module ownership mechanical, not just conventional                          |
-| 2026-10-11 | Workflow: CI tests PR merged onto latest main → auto squash-merge when green → deploy → user playtests live site; user "approved" gates the next phase | User's choice; replaces per-PR preview hosting                                    |
-| 2026-10-11 | GitHub Pages via official Actions deploy (`actions/deploy-pages`); Vite `base: '/Aiball/'` for build/preview                                           | Standard Pages setup; repo is served under `/Aiball/`                             |
-| 2026-10-11 | TypeScript pinned to ~6.0                                                                                                                              | typescript-eslint 8 supports TS < 6.1                                             |
-| 2026-10-11 | Original icon `public/icon.svg` drawn by hand in SVG                                                                                                   | Assets must be original                                                           |
+| Date       | Decision                                                                                                                                                                                            | Reason                                                                                                                                                                        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-10-11 | Game name **Velvet 8** (`GAME_NAME` in `src/shared/constants.ts`)                                                                                                                                   | Original name; must not use GamePigeon branding                                                                                                                               |
+| 2026-10-11 | Vite + TypeScript strict, Canvas 2D, no UI framework                                                                                                                                                | Few screens; plain DOM overlays keep bundle small and fast on phones                                                                                                          |
+| 2026-10-11 | Custom deterministic physics, fixed timestep, seeded RNG; ESLint bans `Math.random`/`Date.now`/`performance.now` in physics/rules/ai                                                                | AI must simulate shots exactly as the game plays them                                                                                                                         |
+| 2026-10-11 | Added `src/shared/` for all cross-module types and constants                                                                                                                                        | Single shared place for interfaces avoids edit conflicts between agents                                                                                                       |
+| 2026-10-11 | Table space in meters, landscape-oriented; portrait = 90° render transform (foot of table at top of screen)                                                                                         | Physics/rules/AI stay orientation-agnostic; matches phone-portrait vertical table                                                                                             |
+| 2026-10-11 | Table: 2.24 m × 1.12 m (2:1) playing surface, regulation 57.15 mm balls                                                                                                                             | Standard 8-ft proportions; tune pocket sizes in Phase 1 to match reference feel                                                                                               |
+| 2026-10-11 | Import boundaries enforced via ESLint `no-restricted-imports`                                                                                                                                       | Keeps module ownership mechanical, not just conventional                                                                                                                      |
+| 2026-10-11 | Workflow: CI tests PR merged onto latest main → auto squash-merge when green → deploy → user playtests live site; user "approved" gates the next phase                                              | User's choice; replaces per-PR preview hosting                                                                                                                                |
+| 2026-10-11 | GitHub Pages via official Actions deploy (`actions/deploy-pages`); Vite `base: '/Aiball/'` for build/preview                                                                                        | Standard Pages setup; repo is served under `/Aiball/`                                                                                                                         |
+| 2026-10-11 | TypeScript pinned to ~6.0                                                                                                                                                                           | typescript-eslint 8 supports TS < 6.1                                                                                                                                         |
+| 2026-10-11 | Original icon `public/icon.svg` drawn by hand in SVG                                                                                                                                                | Assets must be original                                                                                                                                                       |
+| 2026-10-11 | Table changed to 7-ft: 1.98 m × 0.99 m playing surface (≈17 balls across), rail 0.075 m; pockets: corner mouth 2.2 balls, side 2.35 balls, regulation jaw angles (142°/104°)                        | Mobile pool shows large balls relative to the table; regulation 8-ft made balls too small on phones. Proportions are an estimate of the reference — playtest feedback welcome |
+| 2026-10-11 | Physics: fixed 1/240 s step with exact-time continuous collision detection; slide→roll solved exactly per step; no `Math.hypot` in the hot path                                                     | Deterministic, no tunnelling at break speed, fast enough for AI search                                                                                                        |
+| 2026-10-11 | Spin model: roll velocity r (top/back) + vertical spin wz; cloth μ_slide 0.12, μ_roll 0.013; tip offset up to 0.6 R; balls frictionless with each other                                             | Strong, readable draw/follow like mobile pool; guide line stays exact (no throw)                                                                                              |
+| 2026-10-11 | Rails: restitution 0.8; only side spin grips the rail (english bends rebounds, plain banks stay mirror-like); 45 % of roll into the rail is reversed                                                | Predictable banks with clear english effect                                                                                                                                   |
+| 2026-10-11 | Pockets: real jaw segments + jaw tips (restitution 0.55) and a capture circle behind the mouth; balls can rattle in or out                                                                          | Matches the "rattle on the jaws" behaviour                                                                                                                                    |
+| 2026-10-11 | Touching clusters (rack, frozen balls) resolved with a ~1 ms damped-spring soft-contact micro-simulation; isolated pairs use exact impulses                                                         | Instant pairwise impulses spread a rack like a Newton's cradle (only corners move)                                                                                            |
+| 2026-10-11 | Rendering: game shows a recorded playback of `simulateShot()` (120 Hz samples, interpolated); static table on its own canvas; balls drawn as per-pixel 3D sprites re-rendered only when they rotate | What the AI predicts is exactly what is shown; 60 fps with little work per frame                                                                                              |
+| 2026-10-11 | Assets: balls (colors, stripes, numbers) rendered procedurally in code (numbers use the system font at runtime); cue stick, table, HUD, spin picker drawn in code/CSS                               | All original; no image/font/sound files added                                                                                                                                 |
+| 2026-10-11 | Controls layout: power slider left of the table, fine-aim wheel right, spin button top right; HUD insets portrait 12/10/3/10 %, landscape 11/8/4/8 %                                                | Mirrors the reference's control placement in both orientations                                                                                                                |
+| 2026-10-11 | Phase 1 is a practice mode: scratch → ball in hand anywhere, cleared table → new rack; rack in `src/rules/rack.ts` (8 centred, solid + stripe corners)                                              | Rules engine proper is Phase 2                                                                                                                                                |

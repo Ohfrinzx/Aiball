@@ -1,6 +1,6 @@
 /**
- * src/rules — 8-ball rules engine: break, groups, fouls, ball-in-hand, turn order, win/loss.
+ * src/rules — 8-ball rules engine: rack, break, groups, fouls, ball-in-hand, turn order,
+ * win/loss. Phase 1 provides the rack; the rest arrives in Phase 2.
  * May import: src/shared only.
- * Phase 0 placeholder; see PROGRESS.md for the task that fills this in.
  */
-export {};
+export { createRack } from './rack';
