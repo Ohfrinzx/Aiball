@@ -19,27 +19,24 @@ playtested the live site and said "approved".
 
 ### Todo
 
-| Phase | Task                                        | Module(s)    | Notes                         |
-| ----- | ------------------------------------------- | ------------ | ----------------------------- |
-| 1     | Ball/cushion/pocket physics + `simulate()`  | physics      | Fixed timestep, deterministic |
-| 1     | Draw balls, cue stick, aim guide line       | render       |                               |
-| 1     | Aim drag, power slider, spin selector       | input, ui    | GamePigeon-style controls     |
-| 1     | Game loop wiring for a single shot          | state        |                               |
-| 2     | 8-ball rules engine                         | rules        |                               |
-| 2     | AI opponent                                 | ai           | Uses physics `simulate()`     |
-| 2     | Menus, HUD, responsive polish               | ui, render   |                               |
-| 3     | Audio                                       | audio        | Original sounds only          |
-| 3     | Animations                                  | render       |                               |
-| 3     | PWA manifest + service worker (offline)     | state/config |                               |
-| 3     | Stats and settings                          | ui, state    |                               |
-| 4     | Full review, bug fixing, mobile performance | all          |                               |
+| Phase | Task                                        | Module(s)    | Notes                     |
+| ----- | ------------------------------------------- | ------------ | ------------------------- |
+| 2     | 8-ball rules engine                         | rules        |                           |
+| 2     | AI opponent                                 | ai           | Uses physics `simulate()` |
+| 2     | Menus, HUD, responsive polish               | ui, render   |                           |
+| 3     | Audio                                       | audio        | Original sounds only      |
+| 3     | Animations                                  | render       |                           |
+| 3     | PWA manifest + service worker (offline)     | state/config |                           |
+| 3     | Stats and settings                          | ui, state    |                           |
+| 4     | Full review, bug fixing, mobile performance | all          |                           |
 
-(Phase 1+ tasks will be refined into concrete branch-sized tasks when Phase 1 starts.)
+(Phase 2+ tasks will be refined into concrete branch-sized tasks when their phase starts.)
 
 ### In Progress
 
-| Task | Agent | Branch | Started |
-| ---- | ----- | ------ | ------- |
+| Task                                                                                                                                                              | Agent                  | Branch                        | Started    |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------------------------- | ---------- |
+| Phase 1 (all four tasks, one branch): physics + `simulate()`/`simulateShot()`; render balls/cue/guide line; aim drag + fine aim + power slider + spin; state loop | Claude (Phase 1 agent) | `claude/upbeat-newton-elmc39` | 2026-10-11 |
 
 ### In Review
 
@@ -56,6 +53,7 @@ playtested the live site and said "approved".
 
 Newest first. Format: `YYYY-MM-DD — who — what — why`.
 
+- 2026-10-11 — Claude (Phase 1 agent) — Claimed Phase 1 (physics, table + balls, cue controls, single-shot game loop) on branch `claude/upbeat-newton-elmc39` — user directed Phase 1 to start; the session's harness mandates this branch name instead of `phase1/...`.
 - 2026-10-11 — Claude (Phase 0 agent) — Moved Phase 0 to Done on the task board — `ci` green on Ohfrinzx/Aiball#1; merging to main. Phase 0 checkbox stays open until the user playtests the live site and says "approved".
 - 2026-10-11 — Claude (Phase 0 agent) — Linked Phase 0 PR (Ohfrinzx/Aiball#1) on the task board — track review state.
 - 2026-10-11 — Claude (Phase 0 agent) — Scaffolded Vite + TS project, ESLint (with module
