@@ -40,20 +40,21 @@ playtested the live site and said "approved".
 
 ### In Review
 
-| Task                                                                                                                                                                                                                                                                                                                                 | Agent                  | Branch                        | PR                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- | ----------------------------- | -------------------------------------------------------------- |
-| Phase 1 (all four tasks, one branch): physics + `simulate()`/`simulateShot()`; render balls/cue/guide line; aim drag + fine aim + power slider + spin; state loop. Shared type changes: see 2026-10-11 change log (new physics/scene/input types in `shared/types.ts`, `TableGeometry` cushions/jaws, 7-ft table, `railWidth` 0.075) | Claude (Phase 1 agent) | `claude/upbeat-newton-elmc39` | [Ohfrinzx/Aiball#2](https://github.com/Ohfrinzx/Aiball/pull/2) |
+| Task | Agent | Branch | PR  |
+| ---- | ----- | ------ | --- |
 
 ### Done
 
-| Task                                                                                                                   | Agent                  | Branch                                         | Merged     |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------------------------------- | ---------- |
-| Phase 0: Foundation ([Ohfrinzx/Aiball#1](https://github.com/Ohfrinzx/Aiball/pull/1)) — awaiting user playtest approval | Claude (Phase 0 agent) | `claude/mobile-8ball-pool-architecture-psyp8z` | 2026-10-11 |
+| Task                                                                                                                                     | Agent                  | Branch                                         | Merged     |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------------------------------- | ---------- |
+| Phase 1: physics, table, cue controls ([Ohfrinzx/Aiball#2](https://github.com/Ohfrinzx/Aiball/pull/2)) — awaiting user playtest approval | Claude (Phase 1 agent) | `claude/upbeat-newton-elmc39`                  | 2026-10-11 |
+| Phase 0: Foundation ([Ohfrinzx/Aiball#1](https://github.com/Ohfrinzx/Aiball/pull/1)) — awaiting user playtest approval                   | Claude (Phase 0 agent) | `claude/mobile-8ball-pool-architecture-psyp8z` | 2026-10-11 |
 
 ## Change log
 
 Newest first. Format: `YYYY-MM-DD — who — what — why`.
 
+- 2026-10-11 — Claude (Phase 1 agent) — Moved Phase 1 to Done on the task board — `ci` green on Ohfrinzx/Aiball#2; merging to main. Phase 1 checkbox stays open until the user playtests the live site and says "approved".
 - 2026-10-11 — Claude (Phase 1 agent) — Opened Ohfrinzx/Aiball#2 and moved Phase 1 to In Review — track review/CI state.
 - 2026-10-11 — Claude (Phase 1 agent) — Rendering (`src/render`: table with jaw-cut cushions, per-pixel 3D ball sprites that roll, cue stick, aim guide with ghost ball + object/cue lines, ball-in-hand ring, kitchen shading), input (`src/input`: drag-to-rotate aim, tap-to-aim, fine-aim wheel, mouse-wheel fine aim, pull-back power slider, spin pad, cue ball dragging), HUD (`src/ui`: top bar, power slider, fine-aim wheel, spin picker, toasts), game loop (`src/state`: practice mode, recorded-playback animation, strike animation, scratch → ball in hand, re-rack, `?seed=`), `index.html` gains `#scene` canvas and `#hud`, `src/styles.css` safe-area frame; unit tests for input/state; Playwright gameplay tests; README controls — completes Phase 1 controls and flow.
 - 2026-10-11 — Claude (Phase 1 agent) — Physics engine (`src/physics`: fixed 1/240 s step, continuous collision detection, slide→roll friction, top/back/side spin, rail english, pocket jaws with rattle, soft-contact clusters for the break, `simulate()`/`simulateShot()`/`predictAim()`), rack (`src/rules/rack.ts`), 7-ft table geometry with jaws (`src/shared`), unit tests — Phase 1 core mechanics. Shared changes: new types in `shared/types.ts` (BallState, TableState, ShotResult, ShotPlayback, AimPrediction, SceneView, InputHandlers, …), `TableGeometry` gained cushions/jawTips/cushionOutlines/headSpot, `Pocket` gained `mouth`, `ViewTransform` gained `tableRect`; `shared/tableGeometry.ts`, `shared/quat.ts` added. Affects render (table drawing) and every future module.
