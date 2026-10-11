@@ -39,9 +39,9 @@ playtested the live site and said "approved".
 
 ### In Review
 
-| Task                                       | Agent                        | Branch                | PR           |
-| ------------------------------------------ | ---------------------------- | --------------------- | ------------ |
-| Phase 2: 8-ball rules engine (`src/rules`) | Claude (Phase 2 rules agent) | `phase2/rules-engine` | (link below) |
+| Task                                       | Agent                        | Branch                                                                               | PR  |
+| ------------------------------------------ | ---------------------------- | ------------------------------------------------------------------------------------ | --- |
+| Phase 2: 8-ball rules engine (`src/rules`) | Claude (Phase 2 rules agent) | `phase2/rules-engine` [Ohfrinzx/Aiball#3](https://github.com/Ohfrinzx/Aiball/pull/3) |
 
 ### Done
 
@@ -54,6 +54,7 @@ playtested the live site and said "approved".
 
 Newest first. Format: `YYYY-MM-DD — who — what — why`.
 
+- 2026-10-11 — Claude (Phase 2 rules agent) — Opened Ohfrinzx/Aiball#3 and moved the rules engine to In Review — track review/CI state.
 - 2026-10-11 — Claude (Phase 2 rules agent) — Rules engine (`src/rules`): `createRules()`, `evaluateShot(rules, tableBefore, shotResult, call)` → next `RulesState` + `ShotOutcome` (fouls, group assignment, turn change, game end), `detectFouls()`, and helpers for state/ai/ui (`isShootingEight`, `needsPocketCall`, `legalFirstContacts`, `groupRemaining`, `FOUL_TEXT`, `END_TEXT`). Covers break, open table, solids/stripes assignment, turn changes, fouls (scratch, no contact, wrong ball first, no rail after contact), ball-in-hand anywhere after every foul, called pocket for the 8, win/loss on the 8 (early 8, scratch on 8, wrong pocket, foul on 8). Pure; no `Math.random`/clock. 59 unit tests with hand-built shot results (`tests/unit/rules.test.ts`) plus 3 against real `simulateShot()` output (`tests/unit/rulesPhysics.test.ts`). **Shared type change (additive only):** new `src/shared/rulesTypes.ts` (`PlayerId`, `BallGroup`, `RulesOptions`, `RulesState`, `ShotCall`, `Foul`, `EndReason`, `GameEnd`) re-exported from `src/shared/index.ts`; `types.ts` untouched. Affects `state` (owns the `RulesState`, supplies the `ShotCall`, replaces the Phase 1 practice `settleShot` logic), `ai` (use `legalFirstContacts`, `evaluateShot` to score shots) and `ui` (show groups, fouls, call-pocket picker). `state` is not wired to the rules yet — that is a follow-up task for the `state` owner.
 - 2026-10-11 — Claude (Phase 2 rules agent) — Claimed "Phase 2 – Rules engine" (`src/rules`: break, open table, groups, turns, fouls, ball-in-hand, 8-ball call, win/loss) on branch `phase2/rules-engine` — user directed this task to start.
 - 2026-10-11 — Claude (Phase 1 agent) — Moved Phase 1 to Done on the task board — `ci` green on Ohfrinzx/Aiball#2; merging to main. Phase 1 checkbox stays open until the user playtests the live site and says "approved".
