@@ -43,9 +43,9 @@ playtested the live site and said "approved".
 
 ### In Review
 
-| Task                | Agent                  | Branch                                         | PR      |
-| ------------------- | ---------------------- | ---------------------------------------------- | ------- |
-| Phase 0: Foundation | Claude (Phase 0 agent) | `claude/mobile-8ball-pool-architecture-psyp8z` | pending |
+| Task                | Agent                  | Branch                                         | PR                                                             |
+| ------------------- | ---------------------- | ---------------------------------------------- | -------------------------------------------------------------- |
+| Phase 0: Foundation | Claude (Phase 0 agent) | `claude/mobile-8ball-pool-architecture-psyp8z` | [Ohfrinzx/Aiball#1](https://github.com/Ohfrinzx/Aiball/pull/1) |
 
 ### Done
 
@@ -56,6 +56,7 @@ playtested the live site and said "approved".
 
 Newest first. Format: `YYYY-MM-DD — who — what — why`.
 
+- 2026-10-11 — Claude (Phase 0 agent) — Linked Phase 0 PR (Ohfrinzx/Aiball#1) on the task board — track review state.
 - 2026-10-11 — Claude (Phase 0 agent) — Scaffolded Vite + TS project, ESLint (with module
   boundary + determinism rules), Prettier, Vitest, Playwright; `src/` module folders with
   ownership headers; `src/shared` types/constants/RNG/vec2; responsive placeholder table
