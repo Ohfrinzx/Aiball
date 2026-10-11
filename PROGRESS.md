@@ -22,7 +22,6 @@ playtested the live site and said "approved".
 
 | Phase | Task                                        | Module(s)    | Notes                     |
 | ----- | ------------------------------------------- | ------------ | ------------------------- |
-| 2     | 8-ball rules engine                         | rules        |                           |
 | 2     | AI opponent                                 | ai           | Uses physics `simulate()` |
 | 2     | Menus, HUD, responsive polish               | ui, render   |                           |
 | 3     | Audio                                       | audio        | Original sounds only      |
@@ -37,6 +36,7 @@ playtested the live site and said "approved".
 
 | Task | Agent | Branch | Started |
 | ---- | ----- | ------ | ------- |
+| Phase 2: 8-ball rules engine (`src/rules`) | Claude (Phase 2 rules agent) | `phase2/rules-engine` | 2026-10-11 |
 
 ### In Review
 
@@ -54,6 +54,7 @@ playtested the live site and said "approved".
 
 Newest first. Format: `YYYY-MM-DD — who — what — why`.
 
+- 2026-10-11 — Claude (Phase 2 rules agent) — Claimed "Phase 2 – Rules engine" (`src/rules`: break, open table, groups, turns, fouls, ball-in-hand, 8-ball call, win/loss) on branch `phase2/rules-engine` — user directed this task to start.
 - 2026-10-11 — Claude (Phase 1 agent) — Moved Phase 1 to Done on the task board — `ci` green on Ohfrinzx/Aiball#2; merging to main. Phase 1 checkbox stays open until the user playtests the live site and says "approved".
 - 2026-10-11 — Claude (Phase 1 agent) — Opened Ohfrinzx/Aiball#2 and moved Phase 1 to In Review — track review/CI state.
 - 2026-10-11 — Claude (Phase 1 agent) — Rendering (`src/render`: table with jaw-cut cushions, per-pixel 3D ball sprites that roll, cue stick, aim guide with ghost ball + object/cue lines, ball-in-hand ring, kitchen shading), input (`src/input`: drag-to-rotate aim, tap-to-aim, fine-aim wheel, mouse-wheel fine aim, pull-back power slider, spin pad, cue ball dragging), HUD (`src/ui`: top bar, power slider, fine-aim wheel, spin picker, toasts), game loop (`src/state`: practice mode, recorded-playback animation, strike animation, scratch → ball in hand, re-rack, `?seed=`), `index.html` gains `#scene` canvas and `#hud`, `src/styles.css` safe-area frame; unit tests for input/state; Playwright gameplay tests; README controls — completes Phase 1 controls and flow.
