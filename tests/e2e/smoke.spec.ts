@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
-const OUTER_RATIO = (2.24 + 2 * 0.145) / (1.12 + 2 * 0.145);
+// Must match TABLE_OUTER in src/shared/constants.ts (7-ft table, 0.045 cushion + 0.075 rail).
+const OUTER_RATIO = (1.98 + 2 * 0.12) / (0.99 + 2 * 0.12);
 
 async function tableRect(page: Page) {
   const raw = await page.locator('#table').getAttribute('data-table-rect');

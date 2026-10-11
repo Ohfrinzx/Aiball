@@ -20,7 +20,7 @@ export const TABLE: TableGeometry = buildTableGeometry({
   length: LENGTH,
   width: WIDTH,
   cushionWidth: 0.045,
-  railWidth: 0.1,
+  railWidth: 0.075,
   ballRadius: BALL_RADIUS,
   // Slightly more generous than regulation (≈2.0 / 2.25 balls) for touch-screen play.
   cornerMouth: 2.2 * BALL_DIAMETER,

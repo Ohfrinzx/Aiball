@@ -1,0 +1,277 @@
+/* In-game HUD. Original styling; colors echo the table palette. */
+.hud {
+  pointer-events: none;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  color: #f2ede2;
+}
+
+.hud button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.hud-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  pointer-events: none;
+}
+
+.hud-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.hud-status {
+  margin-top: 2px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.hud-buttons {
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.hud-spin,
+.hud-reset {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  padding: 0;
+}
+
+.hud-spin {
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #ece6d6 45%, #a9a291 100%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.hud-spin:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.hud-reset {
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.spin-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: #d8263a;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+}
+
+.power,
+.fine-aim {
+  position: absolute;
+  border-radius: 999px;
+  overflow: hidden;
+  pointer-events: auto;
+  touch-action: none;
+  background: linear-gradient(90deg, #0a1319, #1a2a33 50%, #0a1319);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.12),
+    0 3px 10px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.2s;
+}
+
+.hud[data-controls='off'] .power,
+.hud[data-controls='off'] .fine-aim {
+  opacity: 0.35;
+}
+
+.power-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: top;
+  transform: scaleY(0);
+  background: linear-gradient(180deg, #3fcf6a 0%, #f2c230 55%, #e5482e 100%);
+  opacity: 0.85;
+}
+
+.power-cue {
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  width: 34%;
+  height: 92%;
+  margin-left: -17%;
+  border-radius: 4px 4px 2px 2px;
+  background: linear-gradient(
+    180deg,
+    #27445f 0%,
+    #27445f 2%,
+    #f3efe4 2%,
+    #f3efe4 6%,
+    #e9cf9f 6%,
+    #c79f69 52%,
+    #c9ced6 52%,
+    #c9ced6 54%,
+    #5a281c 54%,
+    #2b130d 100%
+  );
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+}
+
+.power-hint {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+}
+
+.fine-aim-ribs {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.28) 0px,
+    rgba(255, 255, 255, 0.28) 2px,
+    rgba(0, 0, 0, 0.35) 2px,
+    rgba(0, 0, 0, 0.35) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+  /* Cylinder shading: ribs fade toward the top and bottom edges. */
+  mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+}
+
+.spin-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 10, 14, 0.62);
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.spin-overlay[hidden] {
+  display: none;
+}
+
+.spin-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+}
+
+.spin-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.spin-pad {
+  position: relative;
+  width: min(64vw, 46vh, 280px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 30%, #ffffff 0%, #efe9da 42%, #b8b09d 100%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.spin-cross {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 0.5px),
+      rgba(0, 0, 0, 0.18) calc(50% - 0.5px),
+      rgba(0, 0, 0, 0.18) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    linear-gradient(
+      180deg,
+      transparent calc(50% - 0.5px),
+      rgba(0, 0, 0, 0.18) calc(50% - 0.5px),
+      rgba(0, 0, 0, 0.18) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+  pointer-events: none;
+}
+
+.spin-dot-large {
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.spin-help {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.spin-done {
+  min-width: 120px;
+  min-height: 44px;
+  border-radius: 22px;
+  border: none;
+  background: #21926f;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%) scale(0.92);
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: rgba(5, 12, 16, 0.82);
+  font-size: 17px;
+  font-weight: 700;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
